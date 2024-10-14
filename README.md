@@ -30,12 +30,10 @@ This project implements a backend API for a Question-Answering bot using the Lan
    pip install -r requirements.txt
    ```
 
-4. Create a `.env` file in the project root and add your OpenAI API key, Pinecode API Key and Pinecode Environment:
+4. Create a `.env` file in the project root and add your OpenAI API key:
 
    ```
    OPENAI_API_KEY=your_openai_api_key_here
-   PINECONE_API_KEY=your_pinecone_api_key_here
-   PINECONE_ENVIRONMENT=your_pinecone_environment_here
    ```
 
 ## Running the API
@@ -83,5 +81,5 @@ The API will be available at `http://localhost:8000`.
 To run the tests, use the following command:
 
 ```
-pytest
+pytest tests
 ```
