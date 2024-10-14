@@ -1,0 +1,11 @@
+fastapi==0.68.0
+uvicorn==0.15.0
+langchain==0.0.200
+openai==0.27.0
+python-multipart==0.0.5
+python-dotenv==0.19.0
+pypdf==3.8.1
+faiss-cpu
+tiktoken
+pytest
+pytest-mock
