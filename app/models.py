@@ -13,3 +13,6 @@ class Answer(BaseModel):
 
 class AnswerList(BaseModel):
     answers: List[Answer]
+
+class QuestionRequest(BaseModel):
+    questions: List[Question]

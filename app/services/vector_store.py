@@ -15,9 +15,9 @@ class VectorStore:
         self.vector_store.save_local(VECTOR_STORE_PATH)
 
     def load_vector_store(self):
-        if os.path.exists(VECTOR_STORE_PATH):
+        try:
             self.vector_store = FAISS.load_local(VECTOR_STORE_PATH, self.embeddings)
-        else:
+        except Exception as e:
             raise FileNotFoundError(f"Vector store not found at {VECTOR_STORE_PATH}. Please upload a document first.")
 
     def similarity_search(self, query: str, k: int = 4):

@@ -48,24 +48,23 @@ The API will be available at `http://localhost:8000`.
 
 ## API Endpoints
 
-1. `/upload_document` (POST): Upload a document (PDF or JSON) for processing.
-2. `/answer_questions` (POST): Submit a list of questions to be answered based on the uploaded document.
+1. `/process_document_and_questions` (POST): Upload a document (PDF) and a JSON file with questions for processing.
+2. `/process_document_and_answer (POST)`: Upload a document (PDF) and submit questions directly as part of the request payload.
+
 
 ## Usage
 
-1. Upload a document:
+1. Upload a document and questions from files:
 
    ```
-   curl -X POST -F "file=@path/to/your/document.pdf" http://localhost:8000/upload_document
+   curl -X POST http://localhost:8000/process_document_and_questions \
+   -H "Content-Type: multipart/form-data" \
+   -F "document=@path/to/your/document.pdf" \
+   -F "questions=@path/to/your/questions.json"
+
    ```
 
-2. Submit questions:
-
-   ```
-   curl -X POST -F "file=@path/to/your/questions.json" http://localhost:8000/answer_questions
-   ```
-
-   The `questions.json` file should have the following format:
+   The _questions.json_ should have the following format:
 
    ```json
    {
@@ -75,6 +74,21 @@ The API will be available at `http://localhost:8000`.
      ]
    }
    ```
+
+
+2. Upload a document and submit questions directly as JSON:
+
+```
+
+curl -X POST http://localhost:8000/process_document_and_answer \
+  -H "Content-Type: multipart/form-data" \
+  -F "document=@path/to/your/document.pdf" \
+  -F "questions={\"questions\": [{\"text\": \"What is the capital of France?\"}, {\"text\": \"Who wrote Romeo and Juliet?\"}]};type=application/json"
+
+```
+In this case, the questions are passed directly as a JSON string in the request.
+
+
 
 ## Running Tests
 
